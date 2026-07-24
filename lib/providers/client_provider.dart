@@ -1,10 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/client.dart';
-import '../repositories/client_repository.dart';
+import '../repositories/contracts/client_repository.dart';
+import '../repositories/mock/mock_client_repository.dart';
 
 final clientRepositoryProvider = Provider<ClientRepository>((ref) {
-  return ClientRepository();
+  return MockClientRepository();
 });
 
 final clientsProvider = Provider<List<Client>>((ref) {
