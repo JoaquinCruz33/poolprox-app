@@ -7,4 +7,13 @@ class MockClientRepository implements ClientRepository {
   List<Client> getClients() {
     return mockClients;
   }
+
+  @override
+  Client? getClientById(String id) {
+    try {
+      return mockClients.firstWhere((client) => client.id == id);
+    } catch (_) {
+      return null;
+    }
+  }
 }

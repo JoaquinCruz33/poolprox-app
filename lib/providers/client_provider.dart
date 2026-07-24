@@ -12,3 +12,8 @@ final clientsProvider = Provider<List<Client>>((ref) {
   final repository = ref.watch(clientRepositoryProvider);
   return repository.getClients();
 });
+
+final clientByIdProvider = Provider.family<Client?, String>((ref, clientId) {
+  final repository = ref.watch(clientRepositoryProvider);
+  return repository.getClientById(clientId);
+});
