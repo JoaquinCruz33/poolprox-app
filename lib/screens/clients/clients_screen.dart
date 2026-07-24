@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/mock_clients.dart';
+import '../../providers/client_provider.dart';
 import '../../widgets/client_card.dart';
 
-class ClientsScreen extends StatelessWidget {
+class ClientsScreen extends ConsumerWidget {
   const ClientsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final clients = ref.watch(clientsProvider);
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Clientes'), centerTitle: true),
+      appBar: AppBar(title: const Text('Clientes')),
       body: ListView.builder(
-        padding: const EdgeInsets.all(16),
-        itemCount: mockClients.length,
+        itemCount: clients.length,
         itemBuilder: (context, index) {
-          final client = mockClients[index];
+          final client = clients[index];
 
           return ClientCard(
             client: client,
